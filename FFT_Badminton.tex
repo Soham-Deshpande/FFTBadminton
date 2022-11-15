@@ -1,0 +1,129 @@
+\documentclass{article}
+
+
+%defining all packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{adjustbox}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{algpseudocode}
+\graphicspath{{/FFTBadminton}}
+\graphicspath{{/home/soham/Uni/Quant/FFTBadminton/}}
+
+%end of packages
+
+
+%title page
+\title{Application of FFT with Badminton}
+
+\author{Soham Deshpande}
+\date{November 2022}
+
+\begin{document}
+
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+%end of title page
+
+\section{Introduction}
+
+After playing badminton for 10 years, a tribute was much needed. The best way
+to combine my passion of badminton and mathematical computation led me to explore
+the use of Fourier Analysis in Image Processing. I have taken an image of the badminton
+racket I am currently using and have used Matlab to return the fourier transform
+of it. The following pages will contain a quick explanation of the maths, code
+and the result.
+\clearpage
+
+
+\section{Fourier Transform}
+
+The Fourier tranform extends the fourier series so that it can be applied to non-periodic
+functions, which helps us view any function in terms of sum of sinusoids.
+\\
+The Fourier tranform of a function $f(x)$ is given by:
+\begin{equation}
+    \int_{\infty}^{-\infty}F(k)e^{2\pi ikx}dk
+\end{equation}
+
+We can use this defintion and then further extend it to be used in a 2-D Fourier
+Transform. The formula below defines the discrete the Fourier Tranform Y of
+an $m$ by $n$ matrix X:
+
+\begin{equation}
+    Y_{p+1,q+1} = \sum^{m-1}_{j=0}\sum_{k=0}^{n-1}\omega^{jp}_m\omega_{n}^{kq}X_{j+1,k+1}
+
+\end{equation}
+
+$\omega_m$ and $\omega_n$ are the complex roots of unity. These can be defined as:
+\\
+$\omega_m = e^{-2 \pi i/m}$
+\\$\omega_n = e^{-2 \pi i/n}$
+
+$i$ is the imaginary number. The formula above shifts the indicies for X and Y by 1
+to reflect the matrix indicies in Matlab.
+\\
+\\
+
+The program written has 6 main components:
+\\
+Loading the image \\
+Converting the image into greyscale
+\\
+Getting the Fourier Coefficients
+\\
+Shifting the zero frequency component
+\\
+Applying the log function to bring out any patterns in the image
+\\
+Reconstructing the image
+\clearpage
+\section{Results}
+Code can be accessed here:
+\\https://github.com/Soham-Deshpande/FFTBadminton
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{image1.png}
+    \caption{Original image}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{image2.png}
+    \caption{Grey scale image}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{image3.png}
+    \caption{Fourier transform of image}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{image4.png}
+    \caption{Centered fourier transform of image}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{image5.png}
+    \caption{Log fourier transform of image}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=1]{image6.png}
+    \caption{Reconstructed image }
+\end{figure}
+
+\clearpage
+\section{Conclusion}
+\\
+Beyond image processing, the fourier transform has a multitude of uses. An Application
+is in modelling time series data which is very relevant to the stock market. I aim to further
+my knowledge about this powerful tool and look to implement it in my own tools
+\end{document}
+
